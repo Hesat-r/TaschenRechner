@@ -12,6 +12,7 @@ buttons.map( button =>{
                 display.innerText = '';
                 dotalowed = false;
                 numberalowed = true;
+                operatorcheck = true;
                 break;
             case 'C':
                 display.innerText = display.innerText.slice(0,-1);
