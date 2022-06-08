@@ -82,7 +82,7 @@ buttons.map( button =>{
                 if(numberalowed == false){
                     numberalowed = true;
                 }
-                display.innerText += "÷";
+                display.innerText += "/";
                 dotalowed=false;
                 operatorcheck = true;
 
