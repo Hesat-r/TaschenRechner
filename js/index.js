@@ -20,6 +20,7 @@ function clearall(){
     dotalowed = false;
     numberalowed = true;
     operatoralowed = false;
+    display.innerText='';
 }
 document.addEventListener('keydown', (e) => {
     if(e.keyCode === 8){
@@ -143,36 +144,35 @@ document.addEventListener('keydown', (e) => {
 document.querySelector('.btn').onclick = (event)=>{
     const key = event.target.innerText;
     if(digit.includes(key)){
-        if(b===''&&sign===''){
+        if(b ==='' && sign===''){
             a += key;
-            display.innerText =a;
-        }else if(a!=='' && b!=='') {
+            display.innerText = a;
+        }else if(a!=='' && b!=='' && finish) {
+            b = key;
+            finsih = false;
+            display.textContent = b;
+          
+        }
+        else{
             b += key;
             display.textContent = b;
-        }else{
-            b+= key;
-            display.textContent = b;
         }
-        console.log(a,sign,b);
-        operatoralowed = true;
-        return;
-       
-       
+       operatoralowed = true;
+       return;
     }
     if(action.includes(key)){
         if(operatoralowed === false){
             return;
-        }if(a!== '' && b!==''){
-            display.innerText = a;
         }
         else{
-            sign = key;
+        sign = key;
         display.innerText = sign;
         console.log(a,sign ,b);
+        return;
         }
         
-       return;
-        
+       
+     
     }
     if(key==="="){
         switch(sign){
@@ -200,15 +200,14 @@ document.querySelector('.btn').onclick = (event)=>{
             a= a%b;
             break;   
         }
+        finish = true;
         display.innerText=a;
-        a=display.innerText;
     }
     if(key==="AC"){
         clearall();
     }
     if(key==="C"){
-        a = display.innerText.slice(0,-1);
-        display.innerText = a;
+        display.innerText = display.innerText.slice(0,-1);
         numberalowed = true;
     }
     if(key==="±"){
