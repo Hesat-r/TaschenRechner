@@ -1,195 +1,219 @@
-let display = document.getElementById('display');
+const display = document.getElementById('display');
 let buttons = Array.from(document.getElementsByClassName('button'));
 let dotalowed = false;
-let operatorcheck = true;
+let operatoralowed = false;
 let numberalowed = true;
-let value;
+let a = '';
+let b = '';
+let sign = '';
+let finish = false;
+const digit = ['0','1','2','3','4','5','6','7','8','9','0','.'];
+const action = ['+','-','*','÷','%'];
 
-buttons.map( button =>{
-    button.addEventListener('click',(e)=>{
-        switch(e.target.innerText){
-            case 'AC':
-                display.innerText = '';
-                dotalowed = false;
-                numberalowed = true;
-                operatorcheck = true;
-                break;
-            case 'C':
-                display.innerText = display.innerText.slice(0,-1);
-                numberalowed = true;
-                break;    
-            case '=':
-                display.innerText = eval(display.innerText);
-                dotalowed = false;
-                operatorcheck = false;
-                numberalowed=false;
-                break;
-            case '±':
-               display.innerText = -display.innerText;
-               break; 
-            case '.':
-                if(dotalowed == false){
-                    display.innerText += '.';
-                    dotalowed = true;
-                }else{
-                    display.innerText += ' ';
 
-                }
-                break;
-            case '+':
-            if(operatorcheck ==false){
-                if(numberalowed == false){
-                    numberalowed = true;
-                }
-                display.innerText += "+";
-                dotalowed=false;
-                operatorcheck = true;  
-            }
-            break;
-            case'-':
-            if(operatorcheck ==false){
-                if(numberalowed == false){
-                    numberalowed = true;
-                    
-                }
-                display.innerText += "-";
-                dotalowed=false;
-                operatorcheck = true;
-            }
-            break;
-            case'*':
-            if(operatorcheck ==false){
-                if(numberalowed == false){ 
-                    numberalowed = true;
-                }
-                display.innerText += "*";
-                dotalowed=false;
-                operatorcheck = true;
-            }
-            break;
-            case'%':
-            if(operatorcheck ==false){
-                if(numberalowed == false){
-                    numberalowed = true;
-                }
-                display.innerText += "%";
-                dotalowed=false;
-                operatorcheck = true;
-            }
-            break;
-            case'÷':
-            if(operatorcheck ==false){
-                if(numberalowed == false){
-                    numberalowed = true;
-                }
-                display.innerText += "/";
-                dotalowed=false;
-                operatorcheck = true;
-
-            }
-            break;
-            case '1':
-                if(numberalowed == true){
-                    display.innerText += "1";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '1';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '2':
-                if(numberalowed == true){
-                    display.innerText += "2";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '2';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '3':
-                if(numberalowed == true){
-                    display.innerText += "3";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '3';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '4':
-                if(numberalowed == true){
-                    display.innerText += "4";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '4';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '5':
-                if(numberalowed == true){
-                    display.innerText += "5";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '5';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '6':
-                if(numberalowed == true){
-                    display.innerText += "6";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '6';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '7':
-                if(numberalowed == true){
-                    display.innerText += "7";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '7';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '8':
-                if(numberalowed == true){
-                    display.innerText += "8";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '8';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '9':
-                if(numberalowed == true){
-                    display.innerText += "9";
-                    operatorcheck = false;
-                }else if(numberalowed == false){
-                    display.innerText = '9';
-                    operatorcheck = false;
-                    numberalowed =true; 
-                }
-                break;
-            case '0':                  
-            if(numberalowed == true){
-                display.innerText += "0";
-                operatorcheck = false;
-            }else if(numberalowed == false){
-                display.innerText = '0';
-                operatorcheck = false;
-                numberalowed =true; 
-            }
-            break;
-            default: 
-            display.innerText += e.target.innerText;
+function clearall(){
+    display.innerText = '';
+    a ='';
+    b ='';
+    sign='';
+    finish=false;
+    dotalowed = false;
+    numberalowed = true;
+    operatoralowed = false;
+}
+document.addEventListener('keydown', (e) => {
+    if(e.keyCode === 8){
+        a = display.innerText.slice(0,-1);
+        display.innerText = a;
+        numberalowed = true;
+    }
+    
+    if(e.keyCode === 48){
+        if(b==='' &&sign===''){
+            a+= 0;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=0;
+            display.innerText = b;
+            operatoralowed = true;
         }
-    });
-});
+    }
+    if(e.keyCode === 49){
+        if(b==='' &&sign===''){
+            a+= 1;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=1;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 50){
+        if(b==='' &&sign===''){
+            a+= 2;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=2;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 51){
+        if(b==='' &&sign===''){
+            a+= 3;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=3;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 52){
+        if(b==='' &&sign===''){
+            a+= 4;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=4;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 53){
+        if(b==='' &&sign===''){
+            a+= 5;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=5;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 54){
+        if(b==='' &&sign===''){
+            a+= 6;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=6;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 55){
+        if(b==='' &&sign===''){
+            a+= 7;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=7;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 56){
+        if(b==='' &&sign===''){
+            a+= 8;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=8;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+    if(e.keyCode === 57){
+        if(b==='' &&sign===''){
+            a+= 9;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=9;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+})
+
+document.querySelector('.btn').onclick = (event)=>{
+    const key = event.target.innerText;
+    if(digit.includes(key)){
+        if(b===''&&sign===''){
+            a += key;
+            display.innerText =a;
+        }else if(a!=='' && b!=='') {
+            b = key;
+            finsih = false;
+            display.textContent = b;
+        }else{
+            b+= key;
+            display.textContent = b;
+        }
+        console.log(a,sign,b);
+        operatoralowed = true;
+        return;
+       
+       
+    }
+    if(action.includes(key)){
+        if(operatoralowed === false){
+            return;
+        }if(a!== '' && b!==''){
+            display.innerText = a;
+        }
+        else{
+            sign = key;
+        display.innerText = sign;
+        console.log(a,sign ,b);
+        }
+        
+       return;
+        
+    }
+    if(key==="="){
+        switch(sign){
+            case"+":
+            a = (+a) +(+b);
+            break;
+            case "-":
+            a = a-b;
+            break;
+            case "*":
+            a = a*b;
+            break;
+            case "÷":
+            if(b==='0'){
+                display.innerText = "man kann nicht mit 0 Dividieren";
+                a='';
+                b='';
+                sign='';
+                return;
+            }else{
+                a = a/b;
+            }
+            break;
+            case "%":
+            a= a%b;
+            break;   
+        }
+        display.innerText=a;
+        a=display.innerText;
+    }
+    if(key==="AC"){
+        clearall();
+    }
+    if(key==="C"){
+        a = display.innerText.slice(0,-1);
+        display.innerText = a;
+        numberalowed = true;
+    }
+    if(key==="±"){
+       a = -display.innerText;
+       display.innerText = a;
+    }
+}
