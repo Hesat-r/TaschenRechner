@@ -147,8 +147,7 @@ document.querySelector('.btn').onclick = (event)=>{
             a += key;
             display.innerText =a;
         }else if(a!=='' && b!=='') {
-            b = key;
-            finsih = false;
+            b += key;
             display.textContent = b;
         }else{
             b+= key;
