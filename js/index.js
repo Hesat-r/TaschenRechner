@@ -167,18 +167,11 @@ document.querySelector('.btn').onclick = (event)=>{
         console.log(a,sign ,b);
         
         }
-        return;
-       
+        
+    }    
      
-    }
-    if(key==="+"){
-        if(a!==''&&b!==''){
-            res = (+a) +(+b);
-        }
-        display.innerText=res;
-
-    }
-    if(key==="="){
+    
+    
         switch(sign){
             case"+":
             a = (+a) +(+b);
@@ -204,9 +197,10 @@ document.querySelector('.btn').onclick = (event)=>{
             a= a%b;
             break;   
         }
+        b = '';
         finish = true;
         display.innerText=a;
-    }
+    
     if(key==="AC"){
         clearall();
     }
