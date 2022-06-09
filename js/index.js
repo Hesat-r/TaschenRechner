@@ -2,7 +2,6 @@ const display = document.getElementById('display');
 let buttons = Array.from(document.getElementsByClassName('button'));
 let dotalowed = false;
 let operatoralowed = false;
-let numberalowed = true;
 let a = '';
 let b = '';
 let sign = '';
@@ -18,7 +17,6 @@ function clearall(){
     sign='';
     finish=false;
     dotalowed = false;
-    numberalowed = true;
     operatoralowed = false;
     display.innerText='';
 }
@@ -26,7 +24,6 @@ document.addEventListener('keydown', (e) => {
     if(e.keyCode === 8){
         a = display.innerText.slice(0,-1);
         display.innerText = a;
-        numberalowed = true;
     }
     
     if(e.keyCode === 48){
@@ -149,7 +146,7 @@ document.querySelector('.btn').onclick = (event)=>{
             display.innerText = a;
         }else if(a!=='' && b!=='' && finish) {
             b = key;
-            finsih = false;
+            finish = false;
             display.textContent = b;
           
         }
@@ -168,9 +165,9 @@ document.querySelector('.btn').onclick = (event)=>{
         sign = key;
         display.innerText = sign;
         console.log(a,sign ,b);
-        return;
-        }
         
+        }
+        return;
        
      
     }
@@ -208,7 +205,6 @@ document.querySelector('.btn').onclick = (event)=>{
     }
     if(key==="C"){
         display.innerText = display.innerText.slice(0,-1);
-        numberalowed = true;
     }
     if(key==="±"){
        a = -display.innerText;
