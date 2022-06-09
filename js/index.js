@@ -163,13 +163,20 @@ document.querySelector('.btn').onclick = (event)=>{
         }
         else{
         sign = key;
-        display.innerText = sign;
+        display.innerText = b;
         console.log(a,sign ,b);
         
         }
         return;
        
      
+    }
+    if(key==="+"){
+        if(a!==''&&b!==''){
+            res = (+a) +(+b);
+        }
+        display.innerText=res;
+
     }
     if(key==="="){
         switch(sign){
@@ -204,10 +211,12 @@ document.querySelector('.btn').onclick = (event)=>{
         clearall();
     }
     if(key==="C"){
-        display.innerText = display.innerText.slice(0,-1);
+        a  = display.innerText.slice(0,-1);
+        display.innerText= a;
     }
     if(key==="±"){
        a = -display.innerText;
        display.innerText = a;
     }
+    
 }
