@@ -86,6 +86,7 @@ document.querySelector('.btn').onclick = (event)=>{
             }
             a += key;
             display.innerText = a;
+            a= display.innerText;
             regextest();
         }else if(a!=='' && b!=='' && finish) {
             b = key;
