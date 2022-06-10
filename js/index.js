@@ -6,7 +6,7 @@ let a = '';
 let b = '';
 let sign = '';
 let finish = false;
-const digit = ['0','1','2','3','4','5','6','7','8','9','0','.'];
+const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
 
 
@@ -149,6 +149,9 @@ document.querySelector('.btn').onclick = (event)=>{
             finish = false;
             display.textContent = b;
           
+        }else if(b!== '' && a!==''){
+            b='';
+            display.innerText = b;
         }
         else{
             b += key;
@@ -171,10 +174,11 @@ document.querySelector('.btn').onclick = (event)=>{
     }    
      
     
-    
+    if(b!==''){
         switch(sign){
             case"+":
             a = (+a) +(+b);
+            console.log(a,sign,b,'plus rechner');
             break;
             case "-":
             a = a-b;
@@ -183,30 +187,26 @@ document.querySelector('.btn').onclick = (event)=>{
             a = a*b;
             break;
             case "÷":
-            if(b==='0'){
-                display.innerText = "man kann nicht mit 0 Dividieren";
-                a='';
-                b='';
-                sign='';
-                return;
-            }else{
-                a = a/b;
-            }
+            a = a/b;
             break;
             case "%":
             a= a%b;
             break;   
         }
-        b = '';
-        finish = true;
         display.innerText=a;
+        sign = '';
+        b='';
+    }
+       
     
     if(key==="AC"){
         clearall();
     }
     if(key==="C"){
         a  = display.innerText.slice(0,-1);
+        console.log(a,'anzahl sliced');
         display.innerText= a;
+
     }
     if(key==="±"){
        a = -display.innerText;
@@ -214,3 +214,5 @@ document.querySelector('.btn').onclick = (event)=>{
     }
     
 }
+
+
