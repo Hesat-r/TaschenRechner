@@ -21,128 +21,55 @@ function clearall(){
     operatoralowed = false;
     display.innerText='';
 }
+function key(code , zahl){
+    if(e.keyCode === code){
+        if(b==='' &&sign===''){
+            a+= zahl;
+            display.innerText =a;
+            operatoralowed = true;
+        }else if(a!=='' &&  sign!=='') {
+            b+=zahl;
+            display.innerText = b;
+            operatoralowed = true;
+        }
+    }
+}
+
 function regextest(){
     if(regex.test(display.innerText) === false){
-        display.innerText = 'Nach dem punkt muss eine zahl erscheinen';
+        display.innerText = 'Vor dem punkt muss eine zahl eingegeben werden';
         return;
     }
 }
 document.addEventListener('keydown', (e) => {
+    function key(code , zahl){
+        if(e.keyCode === code){
+            if(b==='' &&sign===''){
+                a+= zahl;
+                display.innerText =a;
+                operatoralowed = true;
+            }else if(a!=='' &&  sign!=='') {
+                b+=zahl;
+                display.innerText = b;
+                operatoralowed = true;
+            }
+        }
+    }
     if(e.keyCode === 8){
         a = display.innerText.slice(0,-1);
         display.innerText = a;
     }
+    key(48,0);
+    key(49,1);
+    key(50,2);
+    key(51,3);
+    key(52,4);
+    key(53,5);
+    key(54,6);
+    key(55,7);
+    key(56,8);
+    key(57,9);
     
-    if(e.keyCode === 48){
-        if(b==='' &&sign===''){
-            a+= 0;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=0;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 49){
-        if(b==='' &&sign===''){
-            a+= 1;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=1;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 50){
-        if(b==='' &&sign===''){
-            a+= 2;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=2;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 51){
-        if(b==='' &&sign===''){
-            a+= 3;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=3;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 52){
-        if(b==='' &&sign===''){
-            a+= 4;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=4;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 53){
-        if(b==='' &&sign===''){
-            a+= 5;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=5;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 54){
-        if(b==='' &&sign===''){
-            a+= 6;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=6;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 55){
-        if(b==='' &&sign===''){
-            a+= 7;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=7;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 56){
-        if(b==='' &&sign===''){
-            a+= 8;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=8;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-    if(e.keyCode === 57){
-        if(b==='' &&sign===''){
-            a+= 9;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=9;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
 })
 
 document.querySelector('.btn').onclick = (event)=>{
@@ -159,6 +86,7 @@ document.querySelector('.btn').onclick = (event)=>{
           regextest();
         }
         else{
+            b= '';
             b += key;
             display.textContent = b;
             regextest();
@@ -198,11 +126,35 @@ document.querySelector('.btn').onclick = (event)=>{
             a= a%b;
             break;   
         }
-        display.innerText=a;
+        display.innerText = a;
         sign = '';
-        b='';
+        b=null;
+        if(digit.includes(key)){
+            display.innerText = null;
+            b+= key;
+            display.innerText = b;
+            switch(sign){
+                case"+":
+                a = (+a) +(+b);
+                console.log(a,sign,b,'plus rechner');
+                break;
+                case "-":
+                a = a-b;
+                break;
+                case "*":
+                a = a*b;
+                break;
+                case "÷":
+                a = a/b;
+                break;
+                case "%":
+                a= a%b;
+                break;   
+            }
+        }
+        
     }
-       
+      
     
     if(key==="AC"){
         clearall();
