@@ -11,6 +11,8 @@ const action = ['+','-','*','÷','%'];
 const regex = /\.*[0-9]/;
 display.innerText = '';
 let mathcheck = false;
+let result;
+
 function clearall(){
     display.innerText = '';
     a ='';
@@ -74,8 +76,14 @@ document.addEventListener('keydown', (e) => {
 
 document.querySelector('.btn').onclick = (event)=>{
     const key = event.target.innerText;
+
     if(digit.includes(key)){
         if(b ==='' && sign===''){
+            if(a === result){
+                display.innerText='';
+                mathcheck = false;
+                a = display.innerText;
+            }
             a += key;
             display.innerText = a;
             regextest();
@@ -102,10 +110,9 @@ document.querySelector('.btn').onclick = (event)=>{
         display.innerText = b;
         console.log(a,sign ,b);   
         mathcheck = true;
-        return;
         }
     }
-    if(b!== ''&mathcheck === true){
+    if(b!== '' && mathcheck === true){
 
         
         switch(sign){
@@ -130,7 +137,7 @@ document.querySelector('.btn').onclick = (event)=>{
         sign = '';
         b= '';
         mathcheck = false;
-        
+        result = a;
     }
     if(key==="AC"){
         clearall();
