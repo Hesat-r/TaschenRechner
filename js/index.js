@@ -92,7 +92,7 @@ document.querySelector('.btn').onclick = (event)=>{
             regextest();
         }
        operatoralowed = true;
-       return;
+       
     }
     if(action.includes(key)){
         if(operatoralowed === false){
@@ -128,30 +128,7 @@ document.querySelector('.btn').onclick = (event)=>{
         }
         display.innerText = a;
         sign = '';
-        b=null;
-        if(digit.includes(key)){
-            display.innerText = null;
-            b+= key;
-            display.innerText = b;
-            switch(sign){
-                case"+":
-                a = (+a) +(+b);
-                console.log(a,sign,b,'plus rechner');
-                break;
-                case "-":
-                a = a-b;
-                break;
-                case "*":
-                a = a*b;
-                break;
-                case "÷":
-                a = a/b;
-                break;
-                case "%":
-                a= a%b;
-                break;   
-            }
-        }
+        b= '';
         
     }
       
