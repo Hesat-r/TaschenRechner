@@ -8,7 +8,8 @@ let sign = '';
 let finish = false;
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
-
+const regex = /\.*[0-9]/;
+display.innerText = '';
 
 function clearall(){
     display.innerText = '';
@@ -19,6 +20,12 @@ function clearall(){
     dotalowed = false;
     operatoralowed = false;
     display.innerText='';
+}
+function regextest(){
+    if(regex.test(display.innerText) === false){
+        display.innerText = 'Nach dem punkt muss eine zahl erscheinen';
+        return;
+    }
 }
 document.addEventListener('keydown', (e) => {
     if(e.keyCode === 8){
@@ -144,18 +151,17 @@ document.querySelector('.btn').onclick = (event)=>{
         if(b ==='' && sign===''){
             a += key;
             display.innerText = a;
+            regextest();
         }else if(a!=='' && b!=='' && finish) {
             b = key;
             finish = false;
             display.textContent = b;
-          
-        }else if(b!== '' && a!==''){
-            b='';
-            display.innerText = b;
+          regextest();
         }
         else{
             b += key;
             display.textContent = b;
+            regextest();
         }
        operatoralowed = true;
        return;
@@ -170,7 +176,6 @@ document.querySelector('.btn').onclick = (event)=>{
         console.log(a,sign ,b);
         
         }
-        
     }    
      
     
