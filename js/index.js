@@ -5,6 +5,7 @@ let operatoralowed = false;
 let a = '';
 let b = '';
 let sign = '';
+let c = '';
 let finish = false;
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
@@ -76,7 +77,13 @@ document.querySelector('.btn').onclick = (event)=>{
     const key = event.target.innerText;
     if(digit.includes(key)){
         if(b ==='' && sign===''){
-            a += key;
+            if(c!== ''){
+                a = '';
+                c = '';
+            }
+                a+= key;
+            
+           
             display.innerText = a;
             regextest();
         }else if(a!=='' && b!=='' && finish) {
@@ -102,7 +109,7 @@ document.querySelector('.btn').onclick = (event)=>{
         display.innerText = sign;
         console.log(a,sign ,b);
         if(b){
-            c = a;
+            c = '2';
             mathoperator();
             return;
         }
@@ -132,7 +139,8 @@ function mathoperator(){
         }
         display.innerText = a;
         sign = '';
-        b= '';
+        if(c !=='')   { b= a;}
+        c= "2";
         
     }
 }
