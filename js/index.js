@@ -10,8 +10,6 @@ const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
 const regex = /\.*[0-9]/;
 display.innerText = '';
-let mathcheck = false;
-let result;
 
 function clearall(){
     display.innerText = '';
@@ -76,17 +74,10 @@ document.addEventListener('keydown', (e) => {
 
 document.querySelector('.btn').onclick = (event)=>{
     const key = event.target.innerText;
-
     if(digit.includes(key)){
         if(b ==='' && sign===''){
-            if(a === result){
-                display.innerText='';
-                mathcheck = false;
-                a = display.innerText;
-            }
             a += key;
             display.innerText = a;
-            a= display.innerText;
             regextest();
         }else if(a!=='' && b!=='' && finish) {
             b = key;
@@ -95,12 +86,13 @@ document.querySelector('.btn').onclick = (event)=>{
           regextest();
         }
         else{
+            b= '';
             b += key;
             display.textContent = b;
             regextest();
-            mathcheck  = false;
         }
        operatoralowed = true;
+       
     }
     if(action.includes(key)){
         if(operatoralowed === false){
@@ -109,13 +101,13 @@ document.querySelector('.btn').onclick = (event)=>{
         else{
         sign = key;
         display.innerText = b;
-        console.log(a,sign ,b);   
-        mathcheck = true;
-        }
-    }
-    if(b!== '' && mathcheck === true){
-
+        console.log(a,sign ,b);
         
+        }
+    }    
+     
+    
+    if(b!==''){
         switch(sign){
             case"+":
             a = (+a) +(+b);
@@ -137,9 +129,10 @@ document.querySelector('.btn').onclick = (event)=>{
         display.innerText = a;
         sign = '';
         b= '';
-        mathcheck = false;
-        result = a;
+        
     }
+      
+    
     if(key==="AC"){
         clearall();
     }
