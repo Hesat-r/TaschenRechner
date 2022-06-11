@@ -103,13 +103,14 @@ document.querySelector('.btn').onclick = (event)=>{
         console.log(a,sign ,b);
         if(b){
             c = a;
+            mathoperator();
             return;
         }
         c = '';
         }
     }    
      
-    
+function mathoperator(){
     if(b!=='' && !c== ''){
         switch(sign){
             case"+":
@@ -134,7 +135,7 @@ document.querySelector('.btn').onclick = (event)=>{
         b= '';
         
     }
-      
+}
     
     if(key==="AC"){
         clearall();
