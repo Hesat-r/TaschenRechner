@@ -86,7 +86,6 @@ document.querySelector('.btn').onclick = (event)=>{
           regextest();
         }
         else{
-            b= '';
             b += key;
             display.textContent = b;
             regextest();
@@ -100,14 +99,18 @@ document.querySelector('.btn').onclick = (event)=>{
         }
         else{
         sign = key;
-        display.innerText = b;
+        display.innerText = sign;
         console.log(a,sign ,b);
-        
+        if(b){
+            c = a;
+            return;
+        }
+        c = '';
         }
     }    
      
     
-    if(b!==''){
+    if(b!=='' && !c== ''){
         switch(sign){
             case"+":
             a = (+a) +(+b);
