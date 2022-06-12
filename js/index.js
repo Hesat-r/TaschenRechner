@@ -23,19 +23,8 @@ function clearall(){
     display.innerText='';
     tempval.innerText='';
 }
-function key(code , zahl){
-    if(e.keyCode === code){
-        if(b==='' &&sign===''){
-            a+= zahl;
-            display.innerText =a;
-            operatoralowed = true;
-        }else if(a!=='' &&  sign!=='') {
-            b+=zahl;
-            display.innerText = b;
-            operatoralowed = true;
-        }
-    }
-}
+
+
 
 function regextest(){
     if(regex.test(display.innerText) === false){
@@ -49,7 +38,9 @@ function regextest2(){
         return;
     }
 }
+
 document.addEventListener('keydown', (e) => {
+
     function key(code , zahl){
         if(e.keyCode === code){
             if(b==='' &&sign===''){
@@ -63,10 +54,7 @@ document.addEventListener('keydown', (e) => {
             }
         }
     }
-    if(e.keyCode === 8){
-        a = display.innerText.slice(0,-1);
-        display.innerText = a;
-    }
+
     key(48,0);
     key(49,1);
     key(50,2);
@@ -126,6 +114,7 @@ document.querySelector('.btn').onclick = (event)=>{
         display.innerText = sign;
         console.log(a,sign ,b);
         c = '';
+        b = '';
         }
     }    
      
