@@ -10,10 +10,8 @@ let finish = false;
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
 const regex = /\.*[0-9]/;
-display.innerText = '';
 
 function clearall(){
-    display.innerText = '';
     a ='';
     b ='';
     sign='';
@@ -93,7 +91,10 @@ document.querySelector('.btn').onclick = (event)=>{
           regextest();
         }
         else{
-            b += key;
+            if(b === a){
+                b = '';
+            }
+                        b += key;
             display.textContent = b;
             regextest();
         }
@@ -105,14 +106,13 @@ document.querySelector('.btn').onclick = (event)=>{
             return;
         }
         else{
-        sign = key;
-        display.innerText = sign;
-        console.log(a,sign ,b);
         if(b){
             c = '2';
             mathoperator();
-            return;
         }
+        sign = key;
+        display.innerText = sign;
+        console.log(a,sign ,b);
         c = '';
         }
     }    
@@ -158,6 +158,7 @@ function mathoperator(){
        a = -display.innerText;
        display.innerText = a;
     }
+   
     
 }
 
