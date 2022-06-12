@@ -1,4 +1,5 @@
 const display = document.getElementById('display');
+const tempval = document.getElementById('tempval');
 let buttons = Array.from(document.getElementsByClassName('button'));
 let dotalowed = false;
 let operatoralowed = false;
@@ -19,6 +20,7 @@ function clearall(){
     dotalowed = false;
     operatoralowed = false;
     display.innerText='';
+    tempval.innerText='';
 }
 function key(code , zahl){
     if(e.keyCode === code){
@@ -109,6 +111,7 @@ document.querySelector('.btn').onclick = (event)=>{
         if(b){
             c = '2';
             mathoperator();
+            tempval.innerText = a;
         }
         sign = key;
         display.innerText = sign;
@@ -157,6 +160,19 @@ function mathoperator(){
     if(key==="±"){
        a = -display.innerText;
        display.innerText = a;
+    }
+    if(key==="="){
+        if(a && b && sign){
+            c = "2";
+            mathoperator();
+            
+        tempval.innerText = '';
+        return;
+        }else{
+            display.innerText = tempval.innerText;
+            tempval.innerText = '';
+        }
+        
     }
    
     
