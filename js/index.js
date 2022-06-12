@@ -33,7 +33,7 @@ function regextest(){
     }
 }
 function regextest2(){
-    if(regex2.test(a) === false){
+    if(regex2.test(display.innerText) === false){
         display.innerText = 'Vor dem punkt muss eine zahl eingegeben werden';
         return;
     }
@@ -81,11 +81,13 @@ document.querySelector('.btn').onclick = (event)=>{
            
             display.innerText = a;
             regextest();
+            regextest2();
         }else if(a!=='' && b!=='' && finish) {
             b = key;
             finish = false;
             display.textContent = b;
           regextest();
+          regextest2();
         }
         else{
             if(b === a){
@@ -94,6 +96,7 @@ document.querySelector('.btn').onclick = (event)=>{
                         b += key;
             display.textContent = b;
             regextest();
+            regextest2();
         }
        operatoralowed = true;
        
