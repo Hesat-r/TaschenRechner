@@ -7,7 +7,6 @@ let a = '';
 let b = '';
 let sign = '';
 let c = '';
-let finish = false;
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
 const regex2 = /\.*[0-9]/;
@@ -17,7 +16,6 @@ function clearall(){
     a ='';
     b ='';
     sign='';
-    finish=false;
     dotalowed = false;
     operatoralowed = false;
     display.innerText='';
@@ -82,12 +80,6 @@ document.querySelector('.btn').onclick = (event)=>{
             display.innerText = a;
             regextest();
             regextest2();
-        }else if(a!=='' && b!=='' && finish) {
-            b = key;
-            finish = false;
-            display.textContent = b;
-          regextest();
-          regextest2();
         }
         else{
             if(b === a){
