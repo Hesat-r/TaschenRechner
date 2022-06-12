@@ -10,7 +10,8 @@ let c = '';
 let finish = false;
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
-const regex = /\.*[0-9]/;
+const regex2 = /\.*[0-9]/;
+const regex =/^[\d,]*\.?[\d,]*$/;
 
 function clearall(){
     a ='';
@@ -38,6 +39,12 @@ function key(code , zahl){
 
 function regextest(){
     if(regex.test(display.innerText) === false){
+        display.innerText = 'man darf nur ein Punkt nutzen';
+        return;
+    }
+}
+function regextest2(){
+    if(regex2.test(a) === false){
         display.innerText = 'Vor dem punkt muss eine zahl eingegeben werden';
         return;
     }
@@ -109,10 +116,12 @@ document.querySelector('.btn').onclick = (event)=>{
         }
         else{
         if(b){
+            regextest2();
             c = '2';
             mathoperator();
             tempval.innerText = a;
         }
+        regextest2();
         sign = key;
         display.innerText = sign;
         console.log(a,sign ,b);
