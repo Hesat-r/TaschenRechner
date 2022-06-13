@@ -1,15 +1,14 @@
-const express = require('express');
-
-
 const display = document.getElementById('display');
 const tempval = document.getElementById('tempval');
 let buttons = Array.from(document.getElementsByClassName('button'));
+
 let dotalowed = false;
 let operatoralowed = false;
 let a = '';
 let b = '';
 let sign = '';
 let c = '';
+
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
 const action = ['+','-','*','÷','%'];
 const regex2 = /\.*[0-9]/;

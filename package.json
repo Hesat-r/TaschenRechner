@@ -1,9 +1,4 @@
 {
-  "dependencies": {
-    "bulma": "^0.9.4",
-    "express": "^4.18.1",
-    "nodemon": "^2.0.16"
-  },
   "name": "taschenrechner-website",
   "description": "![Image](https://github.com/Hesat-r/Taschenrechner/blob/main/screen.png)",
   "version": "1.0.0",
@@ -21,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Hesat-r/TaschenRechner/issues"
   },
-  "homepage": "https://github.com/Hesat-r/TaschenRechner#readme"
+  "homepage": "https://github.com/Hesat-r/TaschenRechner#readme",
+  "dependencies": {
+    "bulma": "^0.9.4",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
 }
