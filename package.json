@@ -3,5 +3,23 @@
     "bulma": "^0.9.4",
     "express": "^4.18.1",
     "nodemon": "^2.0.16"
-  }
+  },
+  "name": "taschenrechner-website",
+  "description": "![Image](https://github.com/Hesat-r/Taschenrechner/blob/main/screen.png)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hesat-r/TaschenRechner.git"
+  },
+  "author": "Hesat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hesat-r/TaschenRechner/issues"
+  },
+  "homepage": "https://github.com/Hesat-r/TaschenRechner#readme"
 }
