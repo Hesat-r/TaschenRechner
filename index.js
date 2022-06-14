@@ -7,7 +7,7 @@ app.set('view engine', 'pug');
 
 
 app.get('/calc', (req, res) =>{
-    res.render("/Users/hesatredzepi/Desktop/Taschenrechner Website/index.pug",{title:'Taschenrechner'
+    res.render("./index.pug",{title:'Taschenrechner'
 });
 });
 
